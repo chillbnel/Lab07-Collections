@@ -12,6 +12,7 @@ namespace Lab07_Collections
             Deck<Card> myHand = CreateHand(cardsDealt);
             AddCardToHand(myHand);
             RemoveCardFromHand(myHand, 3, 4);
+            DisplayAllCardsInASuit(myHand, 2);
         }
 
         /// <summary>
@@ -75,6 +76,22 @@ namespace Lab07_Collections
 
             Console.WriteLine("========================== Deck with Card Revomed ==========================");
             foreach (Card card in myHand)
+            {
+                Console.WriteLine(card.CardValue + " of " + card.Suit);
+            }
+        }
+        /// <summary>
+        /// Filters the dealt hand down to a single suit
+        /// </summary>
+        /// <param name="myHand">Deck collection containing the dealt hand<</param>
+        /// <param name="cardSuit">Suit of cards to be filtered</param>
+        static void DisplayAllCardsInASuit(Deck<Card> myHand, int cardSuit)
+        {
+            Deck<Card> singleSuit = new Deck<Card>();
+            singleSuit = myHand.CardsInSuit((Suit) cardSuit);
+
+            Console.WriteLine("========================== Filtered by a Suit ==========================");
+            foreach (Card card in singleSuit)
             {
                 Console.WriteLine(card.CardValue + " of " + card.Suit);
             }
