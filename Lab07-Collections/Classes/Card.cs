@@ -10,7 +10,7 @@ namespace Lab07_Collections.Classes
         public CardValue CardValue { get; set; }
     }
 
-    enum Suit
+    public enum Suit
     {
         Spades,
         Hearts,
@@ -18,20 +18,20 @@ namespace Lab07_Collections.Classes
         Diamonds
     }
 
-    enum CardValue
+    public enum CardValue
     {
-        A,
-        K,
-        Q,
-        J,
-        Ten,
-        Nine,
-        Eight,
-        Seven,
-        Six,
-        Five,
-        Four,
+        Two = 2,
         Three,
-        Two
+        Four,
+        Five,
+        Six, 
+        Seven,
+        Eight,
+        Nine,
+        Ten,
+        Jack,
+        Queen,
+        King,
+        Ace
     }
 }
