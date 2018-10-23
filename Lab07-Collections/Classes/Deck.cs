@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Lab07_Collections.Classes
 {
-    class Deck <T> : IEnumerable
+   public class Deck <T> : IEnumerable
     {
         T[] hand = new T[10];
         int count = 0;
@@ -40,6 +40,12 @@ namespace Lab07_Collections.Classes
             }
         }
 
+        public int Count()
+        {
+            int counter = count;
+
+            return counter;
+        }
 
         /// <summary>
         /// Returns the cards that are in a chosen suit
