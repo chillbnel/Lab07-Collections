@@ -4,22 +4,49 @@ using System.Collections.Generic;
 
 namespace Lab07_Collections
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
             int cardsDealt = 10;
+
+            Console.WriteLine("========================== Original Deck ==========================");
             Deck<Card> myHand = CreateHand(cardsDealt);
+            foreach (Card card in myHand)
+            {
+                Console.WriteLine(card.CardValue + " of " + card.Suit);
+            }
+
+            Console.WriteLine("========================== Deck with New Card ==========================");
             AddCardToHand(myHand);
+            foreach (Card card in myHand)
+            {
+                Console.WriteLine(card.CardValue + " of " + card.Suit);
+            }
+
+
+            Console.WriteLine("========================== Deck with Card Revomed ==========================");
             RemoveCardFromHand(myHand, 3, 4);
-            DisplayAllCardsInASuit(myHand, 2);
+            foreach (Card card in myHand)
+            {
+                Console.WriteLine(card.CardValue + " of " + card.Suit);
+            }
+
+
+            Console.WriteLine("========================== Filtered by a Suit ==========================");
+            Deck<Card> singleSuit = DisplayAllCardsInASuit(myHand, 2);
+            foreach (Card card in singleSuit)
+            {
+                Console.WriteLine(card.CardValue + " of " + card.Suit);
+            }
+
         }
 
         /// <summary>
         /// Deals a random hand of cards
         /// </summary>
         /// <param name="cardsDealt">number of cards to be dealt</param>
-        static Deck<Card> CreateHand(int cardsDealt)
+        public static Deck<Card> CreateHand(int cardsDealt)
         {
             Deck<Card> myHand = new Deck<Card>();
             {
@@ -32,13 +59,6 @@ namespace Lab07_Collections
                     myHand.Add(new Card { Suit = (Suit)randomCard[0], CardValue = (CardValue)randomCard[1] });
                 }
             }
-
-            Console.WriteLine("========================== Original Deck ==========================");
-            foreach (Card card in myHand)
-            {
-                Console.WriteLine(card.CardValue + " of " + card.Suit);
-            }
-
             return myHand;
         }
 
@@ -46,16 +66,10 @@ namespace Lab07_Collections
         /// Adds a single card to the dealt hand
         /// </summary>
         /// <param name="myHand">Deck collection containing the dealt hand</param>
-        static void AddCardToHand(Deck<Card> myHand)
+       public static void AddCardToHand(Deck<Card> myHand)
         {
             int[] randomCard = RandomCard();
             myHand.Add(new Card { Suit = (Suit)randomCard[0], CardValue = (CardValue)randomCard[1] });
-
-            Console.WriteLine("========================== Deck with New Card ==========================");
-            foreach (Card card in myHand)
-            {
-                Console.WriteLine(card.CardValue + " of " + card.Suit);
-            }
         }
 
         /// <summary>
@@ -64,7 +78,7 @@ namespace Lab07_Collections
         /// <param name="myHand">Deck collection containing the dealt hand</param>
         /// <param name="cardSuit">Suit of card to be removed</param>
         /// <param name="cardValue">Value of card to be reomved</param>
-        static void RemoveCardFromHand(Deck<Card> myHand, int cardSuit, int cardValue)
+        public static void RemoveCardFromHand(Deck<Card> myHand, int cardSuit, int cardValue)
         {
             foreach (Card card in myHand)
             {
@@ -73,28 +87,18 @@ namespace Lab07_Collections
                     myHand.Remove(card);
                 }
             }
-
-            Console.WriteLine("========================== Deck with Card Revomed ==========================");
-            foreach (Card card in myHand)
-            {
-                Console.WriteLine(card.CardValue + " of " + card.Suit);
-            }
         }
         /// <summary>
         /// Filters the dealt hand down to a single suit
         /// </summary>
         /// <param name="myHand">Deck collection containing the dealt hand<</param>
         /// <param name="cardSuit">Suit of cards to be filtered</param>
-        static void DisplayAllCardsInASuit(Deck<Card> myHand, int cardSuit)
+        public static Deck<Card> DisplayAllCardsInASuit(Deck<Card> myHand, int cardSuit)
         {
             Deck<Card> singleSuit = new Deck<Card>();
             singleSuit = myHand.CardsInSuit((Suit) cardSuit);
 
-            Console.WriteLine("========================== Filtered by a Suit ==========================");
-            foreach (Card card in singleSuit)
-            {
-                Console.WriteLine(card.CardValue + " of " + card.Suit);
-            }
+            return singleSuit;
         }
 
         /// <summary>
